@@ -34,15 +34,15 @@ We set the upper bound of the quantized output alphabet size to be $\mu=250000$ 
 
 (2048, 614) ABS-Polar Code
 
-![2048_614](/fig/2048_614.png?raw=true "Performance comparison between standard polar codes and ABS polar codes")
+<img src="/fig/2048_614.png?raw=true" alt="2048_614" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
 
 (2048, 1024) ABS-Polar Code
 
-![2048_1024](C:\Users\PlumJ\Desktop\Task\ABS-Polar\fig\2048_1024.png)
+<img src="/fig/2048_1024.png?raw=true" alt="2048_1024" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
 
 (2048, 1434) ABS-Polar Code
 
-![2048_1434](C:\Users\PlumJ\Desktop\Task\ABS-Polar\fig\2048_1434.png)
+<img src="/fig/2048_1434.png?raw=true" alt="2048_1434" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
 
 ## Acknowledgement
 
