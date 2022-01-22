@@ -1,3 +1,12 @@
+//==============================================================
+// Interfaces of priority queue which will be used in decoder.
+//  
+// Copyright 2022 and onwards Guodong Li
+// 
+// Licensed under the Apache License, Version 2.0.
+// 
+//==============================================================
+
 #ifndef PRIORITY_QUEUE_INCLUDE
 #define PRIORITY_QUEUE_INCLUDE
 

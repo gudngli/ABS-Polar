@@ -1,3 +1,14 @@
+//==============================================================
+//
+// Interfaces of BPSK-AWGN channel.
+//  
+// Copyright 2022 and onwards Guodong Li
+// 
+// Licensed under the Apache License, Version 2.0.
+// 
+//==============================================================
+
+
 #ifndef CHANNEL_INCLUDE
 #define CHANNEL_INCLUDE
 
@@ -30,6 +41,18 @@ void transmit(const int* codeword, double* llr, double snr_sqrt_linear, int n){
         llr[i] = coefficient * Gauss_Distribution((codeword[i]?(-1.0):(1.0))*snr_sqrt_linear,  stddev);
     }
 }
+
+
+
+//==================================================================
+//  For discretization of continuous channels, refer to 
+//  I. Tal and A. Vardy, "How to construct polar codes,"" 
+//  IEEE Transactions on Information Theory, vol. 59, no. 10,
+//  pp. 6562–6582, 2013. 
+//      https://ieeexplore.ieee.org/document/6557004
+//  Section VI. Channels with Continuous Output.
+//==================================================================
+
 
 
 // standart normal distribution CDF

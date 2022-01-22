@@ -1,3 +1,14 @@
+//==============================================================
+//
+// Interfaces of ABS Polar Codes (CRC Aided SCL) decoder.
+//  
+// Copyright 2022 and onwards Guodong Li
+// 
+// Licensed under the Apache License, Version 2.0.
+// 
+//==============================================================
+
+
 #ifndef DECODING_INCLUDE
 #define DECODING_INCLUDE
 

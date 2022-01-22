@@ -1,3 +1,13 @@
+//==============================================================
+//
+// Quantization of the output alphabet.
+//  
+// Copyright 2022 and onwards Guodong Li
+// 
+// Licensed under the Apache License, Version 2.0.
+// 
+//==============================================================
+
 #ifndef INTERVAL_MERGE_INCLUDE
 #define INTERVAL_MERGE_INCLUDE
 

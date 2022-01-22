@@ -1,3 +1,13 @@
+//==============================================================
+//
+// Interfaces of CRC check.
+//  
+// Copyright 2022 and onwards Guodong Li
+// 
+// Licensed under the Apache License, Version 2.0.
+// 
+//==============================================================
+
 #ifndef CRC_INCLUDE
 #define CRC_INCLUDE
 

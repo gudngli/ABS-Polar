@@ -1,3 +1,15 @@
+//==============================================================
+// 
+// Interfaces of Double-Bit transition matrix used
+// in code construction
+//  
+// Copyright 2022 and onwards Guodong Li
+// 
+// Licensed under the Apache License, Version 2.0.
+// 
+//==============================================================
+
+
 #ifndef TRANSMAT_INCLUDE
 #define TRANSMAT_INCLUDE
 

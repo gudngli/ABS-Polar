@@ -1,3 +1,11 @@
+//==============================================================
+//  
+// Copyright 2022 and onwards Guodong Li
+// 
+// Licensed under the Apache License, Version 2.0.
+// 
+//==============================================================
+
 #ifndef OUTPUT_INCLUDE
 #define OUTPUT_INCLUDE
 

@@ -1,3 +1,13 @@
+//==============================================================
+//
+// Interfaces of transforms used in decoder.
+//  
+// Copyright 2022 and onwards Guodong Li
+// 
+// Licensed under the Apache License, Version 2.0.
+// 
+//==============================================================
+
 #ifndef NEW_TRANSFORM_INCLUDE
 #define NEW_TRANSFORM_INCLUDE
 

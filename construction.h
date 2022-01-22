@@ -1,12 +1,34 @@
+//==============================================================
+//
+// Interfaces of code construction of ABS Polar Codes.
+//  
+// Copyright 2022 and onwards Guodong Li
+// 
+// Licensed under the Apache License, Version 2.0.
+// 
+//==============================================================
 #ifndef CONSTRUCTION_INCLUDE
 #define CONSTRUCTION_INCLUDE
 
 #include "channel.h"
 
-// construct abs polar codes for BPSK-AWGN channels.
-// where I is the infotmation bits mask,
-// permutation is a m x n matrix recording the swap information of layer 0 ... m-1,
-// swap array will use in decoding of ABS polar codes.
+// I is the infotmation bits mask, a bit vector of length n.
+// I[i] = 1 iff i-th bit is a information bit.
+// 
+// permutation is a m x n matrix recording the swap information
+// after every polar transform in layer 0 ... m-1.
+// 
+// swap is a dynamic 2-D array which will be used in decoding of
+// ABS polar codes. For all 1 <= i < m, swap[i] is a bit vector of length
+// 2^(m-i) - 1.
+// swap[i][j] = 1 iff the order of decoding of two bits of
+// double bits (DB) channel V_{2i+1}^{(n)} will be swaped,
+// where n = 2^{i+1}.
+// 
+// Different from our paper, all of the subscripts used here start from 0.
+// 
+// u is the upper bound of the quantized output alphabet size in the code
+// construction algorithm.
 void construct_abs(int n, int k, int c, double snr, int* I, int** permutation, int** swap, int u);
 
 //====================construction.c================================

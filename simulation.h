@@ -1,3 +1,13 @@
+//==============================================================
+//
+// Interfaces of simulations.
+//  
+// Copyright 2022 and onwards Guodong Li
+// 
+// Licensed under the Apache License, Version 2.0.
+// 
+//==============================================================
+
 #ifndef SIMULATION_INCLUDE
 #define SIMULATION_INCLUDE
 
