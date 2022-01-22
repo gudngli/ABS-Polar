@@ -51,7 +51,7 @@ In the implementation of our decoding algorithm, we have learned a lot from the 
 ## References
 
 1. E. Arıkan, “Channel polarization: A method for constructing capacity-achieving codes for symmetric binary-input memoryless channels,” IEEE Transactions on Information Theory, vol. 55, no. 7, pp. 3051–3073, 2009. [IEEE Xplore](https://ieeexplore.ieee.org/document/5075875)
-2. our paper [arxiv]()
+2. G. Li, Y. Me and S. Hu, "Adjacent-Bits-Swapped Polar codes: A new code construction to speed up polarization,"  [arxiv]()
 3. I. Dumer and K. Shabunov, “Soft-decision decoding of Reed-Muller codes: Recursive lists,” IEEE Transactions on Information Theory, vol. 52, no. 3, pp. 1260–1266, 2006. [IEEE Xplore](https://ieeexplore.ieee.org/document/1603792)
 4. I. Tal and A. Vardy, “How to construct polar codes,” IEEE Transactions on Information Theory, vol. 59, no. 10, pp. 6562–6582, 2013. [IEEE Xplore](https://ieeexplore.ieee.org/document/6557004)
 5. I. Tal and A. Vardy, “List decoding of polar codes,” IEEE Transactions on Information Theory, vol. 61, no. 5, pp. 2213– 2226, 2015. [IEEE Xplore](https://ieeexplore.ieee.org/document/7055304)
