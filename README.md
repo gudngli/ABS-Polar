@@ -64,15 +64,19 @@ int main(){
 
 We set the upper bound of the quantized output alphabet size to be $\mu=250000$ in the code construction algorithm to obtain the simulation results in our paper. However, running the code construction algorithm with $\mu=250000$ takes up to more than one month on a personal computer. In our simulations, we used a server with 128 threads to reduce the running time to several hours. We recommend setting the parameter $\mu$ to be 8000 when running the code construction algorithm on a personal computer. When $\mu=8000$, the construction only takes 3 to 4 hours, and the resulting codes have essentially the same performance as the ones constructed in our paper using $\mu=250000$. Below we show the comparison between the performance of ABS polar codes and standard polar codes over binary-input AWGN channels. 
 
-(2048, 614) ABS-Polar Code
++ (2048, 614) ABS-Polar Codes
 
 <img src="/fig/2048_614.png?raw=true" alt="2048_614" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
 
-(2048, 1024) ABS-Polar Code
+
+
++ (2048, 1024) ABS-Polar Codes
 
 <img src="/fig/2048_1024.png?raw=true" alt="2048_1024" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
 
-(2048, 1434) ABS-Polar Code
+
+
++ (2048, 1434) ABS-Polar Code
 
 <img src="/fig/2048_1434.png?raw=true" alt="2048_1434" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
 
