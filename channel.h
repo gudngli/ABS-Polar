@@ -36,6 +36,9 @@ double snr_sqrt_linear(double snr, double rate){
 }
 
 void transmit(const int* codeword, double* llr, double snr_sqrt_linear, int n){
+    std::random_device rd;
+    std::mt19937_64       rng{ rd() };
+    std::normal_distribution<double>       std_Gauss_d(0.0f, 1.0f);
     double coefficient = 4.0 * snr_sqrt_linear;
     for (int i = 0; i < n; i++){
         llr[i] = coefficient * Gauss_Distribution((codeword[i]?(-1.0):(1.0))*snr_sqrt_linear,  stddev);

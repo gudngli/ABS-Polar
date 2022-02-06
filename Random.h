@@ -11,10 +11,14 @@
 
 #include <random>
 
+/*
+
 std::random_device rd;
-std::mt19937       rng{ rd() };
+std::mt19937_64       rng{ rd() };
 std::normal_distribution<double>       std_Gauss_d(0.0f, 1.0f); 
 std::uniform_real_distribution<double> urd;
+
+*/
 #define Standard_Gauss_Distribution() (std_Gauss_d(rng))
 
 //p in [0.0, 1.0] 
@@ -26,6 +30,9 @@ void get_message(int* message, int k);
 //==================================Random.h========================================
 
 void get_message(int* message, int k){
+    std::random_device rd;
+    std::mt19937_64       rng{ rd() }; 
+    std::uniform_real_distribution<double> urd;
     for (int i = 0; i < k; i++){
         message[i] = Binary_Distribution(0.5);
     }

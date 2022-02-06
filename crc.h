@@ -33,6 +33,11 @@ CRC* crc_init(int k, int c){
     crc->k = k;
     crc->c = c;
     crc->H = MALLOC(k, int*);
+
+    std::random_device rd;
+    std::mt19937_64       rng{ rd() }; 
+    std::uniform_real_distribution<double> urd;
+    
     for(int i = 0; i < k; i++){
         crc->H[i] = MALLOC(c, int);
         for (int j = 0; j < c; j++){
