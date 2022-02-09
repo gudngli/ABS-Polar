@@ -1,5 +1,5 @@
 # ABS Polar Codes
-This is an implementation of ***Adjacent-Bits-Swapped (ABS) Polar Codes*** proposed by Guodong Li, Min Ye and Sihuang Hu ([arXiv]()). This repo includes code construction, encoding and decoding (SCL and CRC Aided-SCL) of the ABS polar codes.
+This is an implementation of ***Adjacent-Bits-Swapped (ABS) Polar Codes*** proposed by Guodong Li, Min Ye and Sihuang Hu ([arXiv]()). This repo includes code construction, encoding and decoding (SCL and CRC-Aided SCL) of the ABS polar codes.
 
 ## Build
 
@@ -21,7 +21,7 @@ $ ./abs
 + `k` - code dimension
 + `c` - CRC length
 + `u` - the upper bound of the quantized output alphabet size in the code construction algorithm.
-+ `cons_snr` - signal to noise Ratio (SNR) [dB] used in code construction. In our paper, we chose cons_snr 2.00 dB in the code construction for all choices of n and k.
++ `cons_snr` - signal to noise Ratio (SNR) [dB] used in code construction. In our paper, we chose cons_snr to be 2.00 dB in the code construction for all choices of n and k.
 + `L` - List size in SCL decoder
 + `rounds` - simulation round of every snr.
 
@@ -61,22 +61,23 @@ int main(){
 
 ## Simulation Results
 
-
 We set the upper bound of the quantized output alphabet size to be $\mu=250000$ in the code construction algorithm to obtain the simulation results in our paper. However, running the code construction algorithm with $\mu=250000$ takes up to more than one month on a personal computer. In our simulations, we used a server with 128 threads to reduce the running time to several hours. We recommend setting the parameter $\mu$ to be 8000 when running the code construction algorithm on a personal computer. When $\mu=8000$, the construction only takes 3 to 4 hours, and the resulting codes have essentially the same performance as the ones constructed in our paper using $\mu=250000$. Below we show the comparison between the performance of ABS polar codes and standard polar codes over binary-input AWGN channels. 
 
-+ (2048, 614) ABS-Polar Codes
+In the figures below, "ST" refers to standard polar codes, and "ABS" refers to ABS polar codes.
+
++ n = 2048, k = 614
 
 <img src="/fig/2048_614.png?raw=true" alt="2048_614" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
 
 
 
-+ (2048, 1024) ABS-Polar Codes
++ n = 2048, k = 1024
 
 <img src="/fig/2048_1024.png?raw=true" alt="2048_1024" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
 
 
 
-+ (2048, 1434) ABS-Polar Code
++ n = 2048, k = 1434
 
 <img src="/fig/2048_1434.png?raw=true" alt="2048_1434" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
 

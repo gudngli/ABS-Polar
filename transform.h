@@ -13,7 +13,7 @@
 
 #include "common.h"
 
-const double pro_lower_threshold = 1e-8;
+const double pro_lower_threshold = 1e-15;
 const double pro_upper_threshold = 1 - pro_lower_threshold;
 
 const double llr_upper_threshold =  1e8;
