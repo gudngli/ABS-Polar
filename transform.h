@@ -36,13 +36,15 @@ const double llr_lower_threshold = -llr_upper_threshold;
 
 // p = Pr[x0 = 0 | y0], q = Pr[x1 = 0 | y1]
 void dis_init(double* d, double p, double q);
-void   dis0(double* d, double* d0, double* d1);
-void   dis1(double* d, double* d0, double* d1, int u0);
-void   dis2(double* d, double* d0, double* d1, int u0, int u1);
-void p_dis0(double* d, double* d0, double* d1);
-void p_dis1(double* d, double* d0, double* d1, int u0);
-void p_dis2(double* d, double* d0, double* d1, int u0, int u1);
-
+void oria(double* d, double* d0, double* d1);
+void orib(double* d, double* d0, double* d1, int u0);
+void oric(double* d, double* d0, double* d1, int u0, int u1);
+void swpa(double* d, double* d0, double* d1);
+void swpb(double* d, double* d0, double* d1, int u0);
+void swpc(double* d, double* d0, double* d1, int u0, int u1);
+void adda(double* d, double* d0, double* d1);
+void addb(double* d, double* d0, double* d1, int u0);
+void addc(double* d, double* d0, double* d1, int u0, int u1);
 //================================transform.c=============================
 
 void dis_init(double* d, double p, double q){
@@ -53,7 +55,7 @@ void dis_init(double* d, double p, double q){
     pro_clip(d[0]);pro_clip(d[1]);pro_clip(d[2]);pro_clip(d[3]);
 }
 
-void   dis0(double* d, double* d0, double* d1){
+void oria(double* d, double* d0, double* d1){
     d[0] = d0[0]*d1[0] + d0[1]*d1[1] + d0[1]*d1[0] + d0[0]*d1[1];
     d[1] = d0[2]*d1[2] + d0[3]*d1[3] + d0[3]*d1[2] + d0[2]*d1[3];
     d[2] = d0[2]*d1[0] + d0[3]*d1[1] + d0[3]*d1[0] + d0[2]*d1[1];
@@ -61,7 +63,7 @@ void   dis0(double* d, double* d0, double* d1){
     pro_clip(d[0]);pro_clip(d[1]);pro_clip(d[2]);pro_clip(d[3]);
 }
 
-void   dis1(double* d, double* d0, double* d1, int u0){
+void orib(double* d, double* d0, double* d1, int u0){
     if (u0){// u0 = 1
         d[0] = d0[2]*d1[0] + d0[3]*d1[1];
         d[1] = d0[3]*d1[0] + d0[2]*d1[1];
@@ -81,7 +83,7 @@ void   dis1(double* d, double* d0, double* d1, int u0){
     d[3]/=factor;
 }
 
-void   dis2(double* d, double* d0, double* d1, int u0, int u1){
+void oric(double* d, double* d0, double* d1, int u0, int u1){
     int u = (u0<<1) + u1;
     if (u == 0){
         d[0] = d0[0]*d1[0];
@@ -112,7 +114,7 @@ void   dis2(double* d, double* d0, double* d1, int u0, int u1){
     d[3] /= factor;
 }
 
-void p_dis0(double* d, double* d0, double* d1){
+void swpa(double* d, double* d0, double* d1){
     d[0] = d0[0]*d1[0] + d0[1]*d1[1] + d0[2]*d1[2] + d0[3]*d1[3];
     d[1] = d0[1]*d1[0] + d0[0]*d1[1] + d0[3]*d1[2] + d0[2]*d1[3];
     d[2] = d0[2]*d1[0] + d0[3]*d1[1] + d0[0]*d1[2] + d0[1]*d1[3];
@@ -120,7 +122,7 @@ void p_dis0(double* d, double* d0, double* d1){
     pro_clip(d[0]);pro_clip(d[1]);pro_clip(d[2]);pro_clip(d[3]);
 }
 
-void p_dis1(double* d, double* d0, double* d1, int u0){
+void swpb(double* d, double* d0, double* d1, int u0){
     if (u0){// u0 = 1
         d[0] = d0[2]*d1[0] + d0[3]*d1[1];
         d[1] = d0[0]*d1[2] + d0[1]*d1[3];
@@ -141,7 +143,7 @@ void p_dis1(double* d, double* d0, double* d1, int u0){
 }
 
 
-void p_dis2(double* d, double* d0, double* d1, int u0, int u1){
+void swpc(double* d, double* d0, double* d1, int u0, int u1){
     int u = (u0<<1) + u1;
     if (u == 0){
         d[0] = d0[0]*d1[0];
@@ -163,6 +165,66 @@ void p_dis2(double* d, double* d0, double* d1, int u0, int u1){
         d[1] = d0[2]*d1[1];
         d[2] = d0[1]*d1[2];
         d[3] = d0[0]*d1[3];
+    }
+    pro_clip(d[0]);pro_clip(d[1]);pro_clip(d[2]);pro_clip(d[3]);
+    double factor = d[0] + d[1] + d[2] + d[3];
+    d[0] /= factor;
+    d[1] /= factor;
+    d[2] /= factor;
+    d[3] /= factor;
+}
+
+
+void adda(double* d, double* d0, double* d1){
+    d[0] = d0[0]*d1[0] + d0[1]*d1[1] + d0[3]*d1[2] + d0[2]*d1[3];
+    d[1] = d0[2]*d1[2] + d0[3]*d1[3] + d0[1]*d1[0] + d0[0]*d1[1];
+    d[2] = d0[2]*d1[0] + d0[3]*d1[1] + d0[1]*d1[2] + d0[0]*d1[3];
+    d[3] = d0[0]*d1[2] + d0[1]*d1[3] + d0[3]*d1[0] + d0[2]*d1[1];
+    pro_clip(d[0]);pro_clip(d[1]);pro_clip(d[2]);pro_clip(d[3]);
+}
+
+void addb(double* d, double* d0, double* d1, int u0){
+    if (u0){// u0 = 1
+        d[0] = d0[2]*d1[0] + d0[3]*d1[1];
+        d[1] = d0[1]*d1[2] + d0[0]*d1[3];
+        d[2] = d0[0]*d1[2] + d0[1]*d1[3];
+        d[3] = d0[3]*d1[0] + d0[2]*d1[1];
+    }else{  // u0 = 0
+        d[0] = d0[0]*d1[0] + d0[1]*d1[1];
+        d[1] = d0[3]*d1[2] + d0[2]*d1[3];
+        d[2] = d0[2]*d1[2] + d0[3]*d1[3];
+        d[3] = d0[1]*d1[0] + d0[0]*d1[1];
+    }
+    pro_clip(d[0]);pro_clip(d[1]);pro_clip(d[2]);pro_clip(d[3]);
+    double factor = d[0] + d[1] + d[2] + d[3];
+    d[0] /= factor;
+    d[1] /= factor;
+    d[2] /= factor;
+    d[3] /= factor;
+}
+
+void addc(double* d, double* d0, double* d1, int u0, int u1){
+    int u = (u0<<1) + u1;
+    if (u == 0){
+        d[0] = d0[0]*d1[0];
+        d[1] = d0[1]*d1[1];
+        d[2] = d0[3]*d1[2];
+        d[3] = d0[2]*d1[3];
+    }else if (u==1){
+        d[0] = d0[2]*d1[2];
+        d[1] = d0[3]*d1[3];
+        d[2] = d0[1]*d1[0];
+        d[3] = d0[0]*d1[1];
+    }else if (u==2){
+        d[0] = d0[2]*d1[0];
+        d[1] = d0[3]*d1[1];
+        d[2] = d0[1]*d1[2];
+        d[3] = d0[0]*d1[3];
+    }else{ // u==3
+        d[0] = d0[0]*d1[2];
+        d[1] = d0[1]*d1[3];
+        d[2] = d0[3]*d1[0];
+        d[3] = d0[2]*d1[1];
     }
     pro_clip(d[0]);pro_clip(d[1]);pro_clip(d[2]);pro_clip(d[3]);
     double factor = d[0] + d[1] + d[2] + d[3];

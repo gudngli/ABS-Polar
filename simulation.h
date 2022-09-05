@@ -24,22 +24,19 @@
  * Only output the final result after every simulation, if define FINAL,
  * update the intermediate results in each simulation,  else.
  */
-//#define FINAL
+#define FINAL
 
-typedef struct abs_simu_ins{
+typedef struct simulation_instance{
     int n;
     int k;
     int c;
 
     int m; // n = 2^m
     double rate;
-    
-    int u;
-    double cons_snr;
 
     int  *I;
-    int **permutation;
-    int **swap;
+    int **transform;
+    int **state;
 
     int L;
 
@@ -48,80 +45,75 @@ typedef struct abs_simu_ins{
     int    fail_rounds;
     int ML_fail_rounds;
 
-}abs_simu_ins;
+}simu_ins;
 
-abs_simu_ins* asi_init(int n, int k, int c, int u, double cons_snr, int L);
-void          asi_dele(abs_simu_ins* asi);
-void          asi_simu(double snr, int rounds, abs_simu_ins* asi);
+simu_ins* ins_init(int n, int k, int c, int L);
+void      ins_dele(simu_ins* ins);
+void      ins_simu(double snr, int rounds, simu_ins* ins);
 
 //================simulation.c============================
 
-abs_simu_ins* asi_init(int n, int k, int c, int u, double cons_snr, int L){
-    abs_simu_ins* asi = MALLOC(1, abs_simu_ins);
-    asi->n = n;
-    asi->k = k;
-    asi->c = c;
+simu_ins* ins_init(int n, int k, int c, int L){
+    simu_ins* ins = MALLOC(1, simu_ins);
+    ins->n = n;
+    ins->k = k;
+    ins->c = c;
 
-    asi->m = LOG2(n);
-    asi->rate = ((double)k)/((double)n);
+    ins->m = LOG2(n);
+    ins->rate = ((double)k)/((double)n);
 
-    asi->u = u;
-    asi->cons_snr = cons_snr;
 
-    asi->I = MALLOC(n, int);
-    asi->permutation = MALLOC(asi->m, int*);
-    asi->swap = MALLOC(asi->m, int*);
+    ins->I = MALLOC(n, int);
+    ins->transform = MALLOC(ins->m, int*);
+    ins->state = MALLOC(ins->m, int*);
     
-    construct_abs(n, k, c, cons_snr, asi->I, asi->permutation, asi->swap, u);
-    out_swap(stdout, (char*)"swap array: ", asi->swap, asi->m);
-    out_bits(stdout, (char*)"info bits mask: ", asi->I, asi->n);
-    asi->L = L;
+    ins->L = L;
 
-    return asi;
+    return ins;
 }
 
-void asi_dele(abs_simu_ins* asi){
-    FREE(asi->I);
-    for(int i = 0; i < asi->m; i++){
-        FREE(asi->permutation[i]);
-        FREE(asi->swap[i]);
+void ins_dele(simu_ins* ins){
+    FREE(ins->I);
+    for(int i = 0; i < ins->m; i++){
+        FREE(ins->transform[i]);
+        FREE(ins->state[i]);
     }
-    FREE(asi->permutation);
-    FREE(asi->swap);
+    FREE(ins->transform);
+    FREE(ins->state);
 }
 
-void asi_simu(double snr, int rounds, abs_simu_ins* asi){
-    asi->snr = snr;
-    asi->rounds = rounds;
-    double ssl = snr_sqrt_linear(snr, asi->rate);
+void ins_simu(double snr, int rounds, simu_ins* ins){
+    ins->snr = snr;
+    ins->rounds = rounds;
+    double ssl = snr_sqrt_linear(snr, ins->rate);
     
-    CRC*     crc = crc_init(asi->k, asi->c);
-    encoder* enc = enc_init(asi->m, asi->k+asi->c, asi->I, asi->permutation);
-    decoder* dec = dec_init(asi->m, asi->L, asi->I, asi->swap);
+    CRC*     crc = crc_init(ins->k, ins->c);
+    encoder* enc = enc_init(ins->m, ins->k+ins->c, ins->I, ins->transform);
+    decoder* dec = dec_init(ins->m, ins->L, ins->I, ins->state);
 
-    int* message_crc = MALLOC(asi->n, int);
-    int* codeword    = MALLOC(asi->n, int);
-    double* llr      = MALLOC(asi->n, double);
-    int* deResult    = MALLOC(asi->n, int);
+    int* message_crc = MALLOC(ins->n, int);
+    int* codeword    = MALLOC(ins->n, int);
+    double* llr      = MALLOC(ins->n, double);
+    int* deResult    = MALLOC(ins->n, int);
 
     int   failRounds = 0;
     int MLfailRounds = 0;
     int    err;
     int ML_err;
     
-    printf("Simulation results of (%d, %d, %d)-ABS-Polar code, L = %d, snr = %.2fdB:\n", asi->n, asi->k, asi->c, asi->L, snr);
+    printf("Simulation results of (%d, %d, %d)-ABS(+) Polar code, L = %d, snr = %.2fdB:\n", ins->n, ins->k, ins->c, ins->L, snr);
             printf("    Rounds     error      MLerr        FER       MLFER \n");
 
     for(int r = 0; r < rounds; r++){
         
-        get_message(message_crc, asi->k);
+        get_message(message_crc, ins->k);
         set_crc(message_crc, crc);
         encode(message_crc, codeword, enc);
-        transmit(codeword, llr, ssl, asi->n);
+        transmit(codeword, llr, ssl, ins->n);
         
         decode(llr, deResult, crc, enc, dec);
 
-        error(codeword, deResult, llr, asi->n, &err, &ML_err);
+        error(codeword, deResult, llr, ins->n, &err, &ML_err);
           failRounds +=    err;
         MLfailRounds += ML_err;
         #ifndef FINAL
@@ -145,8 +137,8 @@ void asi_simu(double snr, int rounds, abs_simu_ins* asi){
     FREE(llr);
     FREE(deResult);
 
-    asi->fail_rounds = failRounds;
-    asi->ML_fail_rounds = MLfailRounds;
+    ins->fail_rounds = failRounds;
+    ins->ML_fail_rounds = MLfailRounds;
     
     printf("Simulation End.\n\n");
 }

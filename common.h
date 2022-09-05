@@ -33,10 +33,10 @@ typedef unsigned uint;
     #define EQUAL(x, y) (ABS((x) - (y)) < NEAR_ZERO * ABS(x))
 
 // debug
-// #define __ASSERT__
+#define __ASSERT__
 #ifdef __ASSERT__
     #include <assert.h>
-    #define ASSERT(value) assert(value);
+    #define ASSERT(value) assert(value)
 #else
     #define ASSERT(value)
 #endif
