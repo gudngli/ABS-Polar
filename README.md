@@ -106,7 +106,7 @@ As mentioned above, we save the outputs of the code construction algorithm to th
 Below we show the comparison between the performance of ABS+ polar codes, ABS polar codes and standard polar codes over binary-input AWGN channels.
 
 In the figures below, "ST" refers to standard polar codes, "ABS" refers to ABS polar codes, and "ABS+" refers to ABS+ polar codes.
-The CRC length is chosen from the set $\{4, 8, 12, 16, 20\}$ to minimize the decoding error probability.
+The CRC length is chosen from the set {$4, 8, 12, 16, 20$} to minimize the decoding error probability.
 
 + n = 1024, k = 307
 
