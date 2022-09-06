@@ -93,14 +93,16 @@ For example, the file `consfile/ABS_Plus_BPSK-AWGN_2.00dB_n1024_R0.5_u250000.txt
 + `u250000` - the upper bound of the quantized output alphabet size is $\mu=250000$
 + `n1024` - the code length is $n = 1024$
 
+### implementation
+
+Since the ABS polar codes are special cases of the ABS+ polar codes, the decoding algorithm of ABS+ polar codes can also be used to decode the ABS polar codes.
+In this version, we only call the decoding function of the ABS+ polar codes, and we put the original ABS decoder separately in file `abs_interfaces.h`.
+
 
 ## Simulation Results
 
 We set the upper bound of the quantized output alphabet size to be $\mu=250000$ in the code construction algorithm to obtain the simulation results in our paper. However, running the code construction algorithm with $\mu=250000$ takes up to more than one month on a personal computer. In our simulations, we used a server with 128 threads to reduce the running time to several hours.
-
-To enable you to reproduce the simulation results in our article, we uploaded some construction files in a recent update; see the folder `consfile`. 
-
-Below we show the comparison between the performance of ABS polar codes and standard polar codes over binary-input AWGN channels.
+Below we show the comparison between the performance of ABS+ polar codes, ABS polar codes and standard polar codes over binary-input AWGN channels.
 
 In the figures below, "ST" refers to standard polar codes, "ABS" refers to ABS polar codes, and "ABS+" refers to ABS+ polar codes.
 
