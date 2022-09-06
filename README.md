@@ -83,7 +83,7 @@ int main(){
                      Otherwise, If we conmment out this macro, then the main function will construct the code using the function `construct_abs` or the function `construct_abs_plus`.
 + `ABS_Polar` -  If we define this macro, the main function will construct ABS polar code. Otherwise, If we conmment out this macro, the main function will construct ABS+ polar code.
 
-### construction file
+### The folder `consfile`
 
 Since the running time of the code construction algorithm is very long, we provide the outputs of the code construction algorithm in the folder `consfile` for various choices of parameters. The file name in the folder `consfile` contains the parameters of the constructed codes.
 For example, the file `consfile/ABS_Plus_BPSK-AWGN_2.00dB_n1024_R0.5_u250000.txt` includes the following parameters:
