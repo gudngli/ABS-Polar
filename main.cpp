@@ -16,7 +16,7 @@ int main(){
 
     simu_ins* ins = ins_init(n, k, c, L);
     #ifdef cons_from_file
-        #ifdef ABS
+        #ifdef ABS_Polar
             char* consfile = (char*)"consfile/ABS_BPSK-AWGN_2.000dB_n64_R0.3_u250000.txt";
             construct_abs_from_file(n, k, c, consfile, ins->I, ins->transform, ins->state);
         #elif
