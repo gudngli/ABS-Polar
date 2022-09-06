@@ -102,6 +102,7 @@ In this version, we only call the decoding function of the ABS+ polar codes, and
 ## Simulation Results
 
 We set the upper bound of the quantized output alphabet size to be $\mu=250000$ in the code construction algorithm to obtain the simulation results in our paper. However, running the code construction algorithm with $\mu=250000$ takes up to more than one month on a personal computer. In our simulations, we used a server with 128 threads to reduce the running time to several hours.
+As mentioned above, we save the construction information to files so that you can reproduce our simulation results.
 Below we show the comparison between the performance of ABS+ polar codes, ABS polar codes and standard polar codes over binary-input AWGN channels.
 
 In the figures below, "ST" refers to standard polar codes, "ABS" refers to ABS polar codes, and "ABS+" refers to ABS+ polar codes.
