@@ -1,5 +1,5 @@
 # ABS Polar Codes and ABS+ Polar Codes
-This is an implementation of ***Adjacent-Bits-Swapped (ABS) Polar Codes*** ([arXiv](https://arxiv.org/abs/2202.04454)) and ***ABS+ Polar Codes: Exploiting More Linear Transforms on Adjacent Bits*** ([arXiv]()) proposed by Guodong Li, Min Ye and Sihuang Hu . This repo includes code construction, encoding and decoding (SCL and CRC-Aided SCL) of these two families of codes.
+This is an implementation of ***Adjacent-Bits-Swapped (ABS) Polar Codes*** ([arXiv](https://arxiv.org/abs/2202.04454)) and ***ABS+ Polar Codes: Exploiting More Linear Transforms on Adjacent Bits*** ([arXiv]()) proposed by Guodong Li, Min Ye and Sihuang Hu . This repo includes code construction, encoding and decoding (SCL and CRC-Aided SCL) of these two code families.
 
 ## Build
 
@@ -85,11 +85,11 @@ int main(){
 
 ### construction file
 
-The name of the construction file contains some information about the code to be constructed.
-For example, the file `consfile/ABS_Plus_BPSK-AWGN_2.00dB_n1024_R0.5_u250000.txt` including the following parameters:
+Since the running time of the code construction algorithm is very long, we provide the outputs of the code construction algorithm in the folder `consfile` for various choices of parameters. The file name in the folder `consfile` contains the parameters of the constructed codes.
+For example, the file `consfile/ABS_Plus_BPSK-AWGN_2.00dB_n1024_R0.5_u250000.txt` includes the following parameters:
 
 + `ABS_Plus` - ABS+ polar code
-+ `BPSK-AWGN`, `2.00dB`, `R0.5`- mean that the construction is based on the BPSK-AWGN channel with `SNR`=2.00dB and rate $R = 0.5$
++ `BPSK-AWGN`, `2.00dB`, `R0.5`-  mean that the code is constructed for the BPSK-AWGN channel with `SNR`=2.00dB and rate $R = 0.5$
 + `u250000` - the upper bound of the quantized output alphabet size is $\mu=250000$
 + `n1024` - the code length is $n = 1024$
 
@@ -102,14 +102,15 @@ In this version, we only call the decoding function of the ABS+ polar codes, and
 ## Simulation Results
 
 We set the upper bound of the quantized output alphabet size to be $\mu=250000$ in the code construction algorithm to obtain the simulation results in our paper. However, running the code construction algorithm with $\mu=250000$ takes up to more than one month on a personal computer. In our simulations, we used a server with 128 threads to reduce the running time to several hours.
-As mentioned above, we save the construction information to files so that you can reproduce our simulation results.
+As mentioned above, we save the outputs of the code construction algorithm to the folder `consfile` so that you can reproduce our simulation results.
 Below we show the comparison between the performance of ABS+ polar codes, ABS polar codes and standard polar codes over binary-input AWGN channels.
 
 In the figures below, "ST" refers to standard polar codes, "ABS" refers to ABS polar codes, and "ABS+" refers to ABS+ polar codes.
+The CRC length is chosen from the set ${4, 8, 12, 16, 20}$ to minimize the decoding error probability.
 
 + n = 2048, k = 614
 
-<img src="/fig/2048_614.png?raw=true" alt="2048_614" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
+<img src="/fig/1024_307.png?raw=true" alt="1024_307" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
 
 
 
