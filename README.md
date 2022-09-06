@@ -32,7 +32,7 @@ All parameters  to use in simulation are written in `main.cpp` . For example,
 #include "simulation.h"
 
 #define cons_from_file
-#define ABS_Polar
+//#define ABS_Polar
 
 int main(){
     int n = 1024; // code length
@@ -50,7 +50,7 @@ int main(){
         #ifdef ABS_Polar
             char* consfile = (char*)"consfile/ABS_BPSK-AWGN_2.000dB_n1024_R0.5_u250000.txt";
             construct_abs_from_file(n, k, c, consfile, ins->I, ins->transform, ins->state);
-        #elif
+        #else
             char* consfile = (char*)"consfile/ABS_Plus_BPSK-AWGN_2.000dB_n1024_R0.5_u250000.txt";
             construct_abs_plus_from_file(n, k, c, consfile, ins->I, ins->transform, ins->state);
         #endif
@@ -77,6 +77,7 @@ int main(){
     ins_dele(ins);
     return 0;
 }  
+
 ```
 ### Macros
 + `cons_from_file` - If we define this macro, the main function will construct ABS(+) polar code from given construction file in the folder `consfile`.
