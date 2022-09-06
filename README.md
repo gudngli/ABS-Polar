@@ -34,12 +34,12 @@ All parameters  to use in simulation are written in `abs.cpp` . For example,
 #define ABS_Polar
 
 int main(){
-    int n = 64; // code length
-    int k = 19; // code dimension
-    int c =  0; // CRC length
+    int n = 1024; // code length
+    int k =  512; // code dimension
+    int c =    0; // CRC length
     
     // List size in SCL decoder
-    int L = 32;   
+    int L =   20;   
 
     // simulation round of every snr.
     int rounds = 10000;
