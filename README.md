@@ -1,9 +1,7 @@
-# ABS Polar Codes and ABS+ Polar Codes
-This is an implementation of ***Adjacent-Bits-Swapped (ABS) Polar Codes*** ([arXiv](https://arxiv.org/abs/2202.04454)) and ***ABS+ Polar Codes: Exploiting More Linear Transforms on Adjacent Bits*** ([arXiv]()) proposed by Guodong Li, Min Ye and Sihuang Hu . This repo includes code construction, encoding and decoding (SCL and CRC-Aided SCL) of these two families of codes.
+# ABS Polar Codes
+This is an implementation of ***Adjacent-Bits-Swapped (ABS) Polar Codes*** proposed by Guodong Li, Min Ye and Sihuang Hu ([arXiv](https://arxiv.org/abs/2202.04454)). This repo includes code construction, encoding and decoding (SCL and CRC-Aided SCL) of the ABS polar codes.
 
 ## Build
-
-
 
 Only the randomization part uses C++ library `<random>`.  All the other parts of this repo are implemented in C. We don't separate the implementations and definitions of  interfaces, so you can compile this program on the command line easily.
 
@@ -82,13 +80,9 @@ int main(){
 
 ## Simulation Results
 
-We set the upper bound of the quantized output alphabet size to be $\mu=250000$ in the code construction algorithm to obtain the simulation results in our paper. However, running the code construction algorithm with $\mu=250000$ takes up to more than one month on a personal computer. In our simulations, we used a server with 128 threads to reduce the running time to several hours.
+We set the upper bound of the quantized output alphabet size to be $\mu=250000$ in the code construction algorithm to obtain the simulation results in our paper. However, running the code construction algorithm with $\mu=250000$ takes up to more than one month on a personal computer. In our simulations, we used a server with 128 threads to reduce the running time to several hours. We recommend setting the parameter $\mu$ to be 8000 when running the code construction algorithm on a personal computer. When $\mu=8000$, the construction only takes 3 to 4 hours, and the resulting codes have essentially the same performance as the ones constructed in our paper using $\mu=250000$. Below we show the comparison between the performance of ABS polar codes and standard polar codes over binary-input AWGN channels. 
 
-To enable you to reproduce the simulation results in our article, we uploaded some construction files in a recent update; see the folder `consfile`. 
-
-Below we show the comparison between the performance of ABS polar codes and standard polar codes over binary-input AWGN channels.
-
-In the figures below, "ST" refers to standard polar codes, "ABS" refers to ABS polar codes, and "ABS+" refers to ABS+ polar codes.
+In the figures below, "ST" refers to standard polar codes, and "ABS" refers to ABS polar codes.
 
 + n = 2048, k = 614
 
@@ -113,8 +107,7 @@ In the implementation of our decoding algorithm, we have learned a lot from the 
 ## References
 
 1. E. Arıkan, “Channel polarization: A method for constructing capacity-achieving codes for symmetric binary-input memoryless channels,” IEEE Transactions on Information Theory, vol. 55, no. 7, pp. 3051–3073, 2009. [IEEE Xplore](https://ieeexplore.ieee.org/document/5075875)
-2. G. Li, Y. Me and S. Hu, "Adjacent-Bits-Swapped Polar codes: A new code construction to speed up polarization,"  [arXiv](https://arxiv.org/abs/2202.04454)
-3. G. Li, Y. Me and S. Hu, "ABS+ Polar Codes: Exploiting More Linear Transforms on Adjacent Bits," [arXiv]()
-4. I. Dumer and K. Shabunov, “Soft-decision decoding of Reed-Muller codes: Recursive lists,” IEEE Transactions on Information Theory, vol. 52, no. 3, pp. 1260–1266, 2006. [IEEE Xplore](https://ieeexplore.ieee.org/document/1603792)
-5. I. Tal and A. Vardy, “How to construct polar codes,” IEEE Transactions on Information Theory, vol. 59, no. 10, pp. 6562–6582, 2013. [IEEE Xplore](https://ieeexplore.ieee.org/document/6557004)
-6. I. Tal and A. Vardy, “List decoding of polar codes,” IEEE Transactions on Information Theory, vol. 61, no. 5, pp. 2213– 2226, 2015. [IEEE Xplore](https://ieeexplore.ieee.org/document/7055304)
+2. G. Li, Y. Me and S. Hu, "Adjacent-Bits-Swapped Polar codes: A new code construction to speed up polarization,"  [arxiv](https://arxiv.org/abs/2202.04454)
+3. I. Dumer and K. Shabunov, “Soft-decision decoding of Reed-Muller codes: Recursive lists,” IEEE Transactions on Information Theory, vol. 52, no. 3, pp. 1260–1266, 2006. [IEEE Xplore](https://ieeexplore.ieee.org/document/1603792)
+4. I. Tal and A. Vardy, “How to construct polar codes,” IEEE Transactions on Information Theory, vol. 59, no. 10, pp. 6562–6582, 2013. [IEEE Xplore](https://ieeexplore.ieee.org/document/6557004)
+5. I. Tal and A. Vardy, “List decoding of polar codes,” IEEE Transactions on Information Theory, vol. 61, no. 5, pp. 2213– 2226, 2015. [IEEE Xplore](https://ieeexplore.ieee.org/document/7055304)
