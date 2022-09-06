@@ -108,7 +108,7 @@ Below we show the comparison between the performance of ABS+ polar codes, ABS po
 In the figures below, "ST" refers to standard polar codes, "ABS" refers to ABS polar codes, and "ABS+" refers to ABS+ polar codes.
 The CRC length is chosen from the set ${4, 8, 12, 16, 20}$ to minimize the decoding error probability.
 
-+ n = 2048, k = 614
++ n = 1024, k = 307
 
 <img src="/fig/1024_307.png?raw=true" alt="1024_307" title="Performance comparison between standard polar codes and ABS polar codes" style="zoom:100%;" />
 
