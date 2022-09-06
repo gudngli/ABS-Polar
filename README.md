@@ -1,9 +1,11 @@
-# ABS Polar Codes
-This is an implementation of ***Adjacent-Bits-Swapped (ABS) Polar Codes*** proposed by Guodong Li, Min Ye and Sihuang Hu ([arXiv](https://arxiv.org/abs/2202.04454)). This repo includes code construction, encoding and decoding (SCL and CRC-Aided SCL) of the ABS polar codes.
+# ABS Polar Codes and ABS+ Polar Codes
+This is an implementation of ***Adjacent-Bits-Swapped (ABS) Polar Codes*** ([arXiv](https://arxiv.org/abs/2202.04454)) and ***ABS+ Polar Codes: Exploiting More Linear Transforms on Adjacent Bits*** ([arXiv]()) proposed by Guodong Li, Min Ye and Sihuang Hu . This repo includes code construction, encoding and decoding (SCL and CRC-Aided SCL) of these two families of codes.
 
 ## Build
 
-Only the randomization part uses C++ library `Random.h`.  All the other parts of this repo are implemented in C. We don't separate the implementations and definitions of  interfaces, so you can compile this program on the command line easily.
+ABS+ Polar Codes: Exploiting More Linear Transforms on Adjacent Bits
+
+Only the randomization part uses C++ library `<random>`.  All the other parts of this repo are implemented in C. We don't separate the implementations and definitions of  interfaces, so you can compile this program on the command line easily.
 
 ```
 $ g++ main.cpp -o main
